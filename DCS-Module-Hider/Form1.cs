@@ -46,6 +46,7 @@ namespace DCS_Module_Hider
             "F-5E by Belsimtek","Su-25T by Eagle Dynamics" ,"UH-1H Huey by Belsimtek" , "JF-17 by Deka Ironwork Simulations",
             "F-86F Sabre by Belsimtek","TF-51D Mustang by Eagle Dynamics" ,"A-4E-C" ,"SA342 Gazelle by Polychop-Simulations" ,
             "Caucasus","Ka-50 Black Shark by Eagle Dynamics" ,"Edge540 FM by Aero" ,"P-51D Mustang by Eagle Dynamics","jsAvionics"};
+            
             checkedListBox1_modules.Items.AddRange(modules);
             checkedListBox1_modules.CheckOnClick = true;
             checkedListBox1_modules.Sorted = true;
@@ -218,7 +219,7 @@ namespace DCS_Module_Hider
                 " https://www.paypal.com/paypalme/asherao" + "\r\n" + "\r\n" +
 
                 "If you would like to examine, follow, or add to DMoHi, the git is here: " +
-                "https://github.com/asherao" + "\r\n" + "\r\n" +
+                "https://github.com/asherao/DCS-Module-Hider-DMoHi" + "\r\n" + "\r\n" +
 
                 "Thank you to the Hoggit community on Discord for the idea and research for this utility." + "\r\n" +
                 "Enjoy!" + "\r\n" + "\r\n" +
