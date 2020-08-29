@@ -32,20 +32,21 @@ namespace DCS_Module_Hider
         {
             InitializeComponent();
             // Sets up the initial objects in the CheckedListBox.
+            //just the list of modules
             string[] modules = { "P-47D-30 by Eagle Dynamics", "MiG-19P by RAZBAM" , "MiG-21Bis by Magnitude 3 LLC",
                 "NS430_Mi-8MT", "F/A-18C","Su-27 Flanker by Eagle Dynamics", "L-39C", "Su-33 Flanker by Eagle Dynamics", 
-                "VAICOM PRO by Hollywood_315", "Tacview by Raia Software", "Nevada", "FW-190D9 Dora by Eagle Dynamics",
-            "NS430_L-39C", "Combined Arms by Eagle Dynamics", "Christen Eagle II by Magnitude 3 LLC", "SU-57 PAK FA by CUBANACE SIMULATIONS",
-            "MiG-29 Fulcrum by Eagle Dynamics", "Yak-52 by Eagle Dynamics", "MiG-15bis by Belsimtek",
-            "NS430", "TheChannel", "F-15C", "Su-25A by Eagle Dynamics", "Normandy", "Fw 190 A-8 by Eagle Dynamics", "C-101 Aviojet",
-            "I-16 by OctopusG", "AV-8B N/A by RAZBAM Sims", "A-10A by Eagle Dynamics", "Bf 109 K-4 by Eagle Dynamics",
-            "Flaming Cliffs by Eagle Dynamics","A-10C Warthog by Eagle Dynamics" ,"AJS37 Viggen by Heatblur Simulations",
-            "F-16C bl.50", "VARS Pylons 2019 by GrinnelliDesigns","Syria" ,
-            "Mi-8MTV2 Hip by Belsimtek","MB-339PAN Original model by FTV" , "M-2000C by RAZBAM Sims" ,
-            "F-14B by Heatblur Simulations","Supercarrier" ,"PersianGulf" ,"Spitfire LF Mk. IX by Eagle Dynamics" ,"DCS-SRS" ,
-            "F-5E by Belsimtek","Su-25T by Eagle Dynamics" ,"UH-1H Huey by Belsimtek" , "JF-17 by Deka Ironwork Simulations",
-            "F-86F Sabre by Belsimtek","TF-51D Mustang by Eagle Dynamics" ,"A-4E-C" ,"SA342 Gazelle by Polychop-Simulations" ,
-            "Caucasus","Ka-50 Black Shark by Eagle Dynamics" ,"Edge540 FM by Aero" ,"P-51D Mustang by Eagle Dynamics","jsAvionics"};
+                "VAICOM PRO by Hollywood_315", "VAICOM PRO by 315 Interactive", "Tacview by Raia Software", "Nevada", "FW-190D9 Dora by Eagle Dynamics",
+                "NS430_L-39C", "Combined Arms by Eagle Dynamics", "Christen Eagle II by Magnitude 3 LLC", "SU-57 PAK FA by CUBANACE SIMULATIONS",
+                "MiG-29 Fulcrum by Eagle Dynamics", "Yak-52 by Eagle Dynamics", "MiG-15bis by Belsimtek",
+                "NS430", "TheChannel", "F-15C", "Su-25A by Eagle Dynamics", "Normandy", "Fw 190 A-8 by Eagle Dynamics", "C-101 Aviojet",
+                "I-16 by OctopusG", "AV-8B N/A by RAZBAM Sims", "A-10A by Eagle Dynamics", "Bf 109 K-4 by Eagle Dynamics",
+                "Flaming Cliffs by Eagle Dynamics","A-10C Warthog by Eagle Dynamics" ,"AJS37 Viggen by Heatblur Simulations",
+                "F-16C bl.50", "VARS Pylons 2019 by GrinnelliDesigns","Syria" ,
+                "Mi-8MTV2 Hip by Belsimtek","MB-339PAN Original model by FTV" , "M-2000C by RAZBAM Sims" ,
+                "F-14B by Heatblur Simulations","Supercarrier" ,"PersianGulf" ,"Spitfire LF Mk. IX by Eagle Dynamics" ,"DCS-SRS" ,
+                "F-5E by Belsimtek","Su-25T by Eagle Dynamics" ,"UH-1H Huey by Belsimtek" , "JF-17 by Deka Ironwork Simulations",
+                "F-86F Sabre by Belsimtek","TF-51D Mustang by Eagle Dynamics" ,"A-4E-C" ,"SA342 Gazelle by Polychop-Simulations" ,
+                "Caucasus","Ka-50 Black Shark by Eagle Dynamics" ,"Edge540 FM by Aero" ,"P-51D Mustang by Eagle Dynamics","jsAvionics"};
             
             checkedListBox1_modules.Items.AddRange(modules);
             checkedListBox1_modules.CheckOnClick = true;
@@ -70,38 +71,34 @@ namespace DCS_Module_Hider
 
         }
         string moduleName;
-        private void button2_confirmAndExport_Click(object sender, EventArgs e)
+        private void button2_confirmAndExport_Click(object sender, EventArgs e)//starts the process of exporting the DCS file
         {
             //check that the lua path has been set
             if (String.IsNullOrEmpty(fullPath_pluginsEnabledLua))
             //if one of the path is empty or null, the user didnt have them set
             {
-                MessageBox.Show("It looks like you did not select the correct pluginsEnabled.lua. Please select your pluginsEnabled.lua and try again.");
+                MessageBox.Show("It looks like you did not select the correct DCS Saved Games Config folder. " +
+                    "Please select the correct DCS Saved Games Config folder and try again.");
                 return;
             }
             else
             {
-                saveLuaLocation();
-                exportLua();
-                
+                saveLuaLocation();//saves the lua file location
+                exportLua();//exports the lua to the DCS location
             }
         }
 
-        private void saveLuaLocation()
-            {
+        private void saveLuaLocation()//saves the lua file location to where the utility was ran from
+        {
             //https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/file-system/how-to-write-to-a-text-file
             string[] exportLines = { fullPath_pluginsEnabledLua };
             Directory.CreateDirectory(appPath + @"/DCS-Module-Hider-Settings");
             File.WriteAllLines(appPath + @"/DCS-Module-Hider-Settings/DMoHi-UserSettings.txt", exportLines);
         }
 
-        private void exportLua()
+        private void exportLua()//exports the lua to the DCS location using some nice loops and checkbox checking
         {
-            //export everything
-            Directory.CreateDirectory(appPath + @"/DCS-Module-Hider-Settings");
-
             //https://docs.microsoft.com/en-us/dotnet/api/system.io.streamwriter?redirectedfrom=MSDN&view=netcore-3.1
-            //using (StreamWriter sw = new StreamWriter(appPath + @"/DCS-Module-Hider-Settings/DMoHi-Export.txt"))
             using (StreamWriter sw = new StreamWriter(fullPath_pluginsEnabledLua))
             {
                 //begins the file with necessarry DCS stuff
@@ -118,21 +115,19 @@ namespace DCS_Module_Hider
                 }
 
                 //https://stackoverflow.com/questions/30240481/how-to-do-a-loop-on-all-unchecked-items-from-checkedlistbox-c
-                //similar to what it does to the checked items, but for the unchecked items.
+                //similar to what it does to the checked items, but for the unchecked items. Basically magic
                 IEnumerable<object> notChecked = (from object item in checkedListBox1_modules.Items
                                                   where !checkedListBox1_modules.CheckedItems.Contains(item)
                                                   select item);
                 foreach (object item in notChecked)
                 {
-                    // your code
                     moduleName = item.ToString();
                     sw.WriteLine("    [\"" + moduleName + "\"] = false,");
                 }
-
                 sw.WriteLine("} -- end of pluginsEnabled");//caps off the end of the file
             }
-            MessageBox.Show("exported to '" + fullPath_pluginsEnabledLua + "'. If that does not " +
-                        "look correct, please try again.");
+            MessageBox.Show("Your new 'pluginsEnabled.lua' file has been exported to '" + fullPath_pluginsEnabledLua + "'. If that does not " +
+                        "look correct, please try again.");//tells the user that the export was successful
         }
 
         private void button1_selectLua_Click(object sender, EventArgs e)
@@ -143,22 +138,23 @@ namespace DCS_Module_Hider
             FolderBrowserDialog folderDlg = new FolderBrowserDialog();
 
             folderDlg.ShowNewFolderButton = false;
-            folderDlg.Description = ("Select your DCS Config Folder then click 'OK' (Hint: C:\\Users\\YOURNAME\\Saved Games\\DCS\\Config");
+            folderDlg.Description = ("Select your DCS Config Folder then click 'OK' (Hint: C:\\Users\\YOURNAME\\Saved Games\\DCS\\Config)");
             DialogResult result = folderDlg.ShowDialog();
             if(result == DialogResult.OK)
             {
                 //do a check
                 pathOfConfigFolder = folderDlg.SelectedPath;
-                if (pathOfConfigFolder.Contains(correctConfigFolderCheck))
+                if (pathOfConfigFolder.Contains(correctConfigFolderCheck))//just makes sure that the chosen place contains "config"
                 {
                     textBox1_luaLocation.Text = folderDlg.SelectedPath;
-                    fullPath_pluginsEnabledLua = (pathOfConfigFolder + @"\pluginsEnabled.lua");
+                    fullPath_pluginsEnabledLua = (pathOfConfigFolder + @"\pluginsEnabled.lua");//creates the whole lua path
                     MessageBox.Show("Your new file will be exported as '" + fullPath_pluginsEnabledLua + "'. If that does not " +
                         "look correct, please try again.");
                 }
                 else
                 {
-                    MessageBox.Show("It looks like you did not select the correct file. Please try again.");
+                    MessageBox.Show("It looks like you did not select the correct DCS Saved Games Config folder. " +
+                    "Please select the correct DCS Saved Games Config folder and try again.");
                     return;
                 }
             }
@@ -166,12 +162,12 @@ namespace DCS_Module_Hider
 
         private void label1_selectTheModules_Click(object sender, EventArgs e)
         {
-            fullPath_pluginsEnabledLua = (@"C:\Users\Bailey\Saved Games\DCS.openbeta\Config\pluginsEnabled.lua");
-            textBox1_luaLocation.Text = fullPath_pluginsEnabledLua;
+         
         }
 
         private void button3_deleteLua_Click(object sender, EventArgs e)
         {
+            //this is basically the reset buutton
             //https://stackoverflow.com/questions/3036829/how-do-i-create-a-message-box-with-yes-no-choices-and-a-dialogresult
             string deleteLuaMessageText = ("Are you sure that you want to delete 'pluginsEnabled.lua'? Doing so will remove the file " +
                 "from your computer. If you delete this file you WILL be able to see or access all DCS modules.");
@@ -186,7 +182,6 @@ namespace DCS_Module_Hider
                 {
                     File.Delete(fullPath_pluginsEnabledLua);
                 }
-                
             }
             else if (dialogResult == DialogResult.No)
             {
@@ -195,7 +190,7 @@ namespace DCS_Module_Hider
             }
         }
 
-        private void button4_helpReadmee_Click(object sender, EventArgs e)
+        private void button4_helpReadmee_Click(object sender, EventArgs e)//readmee and help text
         {
             string helpReadmeMessage = ("Welcome to DCS Module Hider (DMoHi) v1. This program will enable you to select " +
                 "which aircraft you want to display or hide on the main menu of DCS (as well as the rest of DCS). " +
@@ -227,7 +222,8 @@ namespace DCS_Module_Hider
                 "~Bailey" + "\r\n" +
                 "29AUG2020");
 
-            DialogResult dialogResult = MessageBox.Show(helpReadmeMessage, "Help / Readmee", MessageBoxButtons.OK);
+            DialogResult dialogResult = MessageBox.Show(helpReadmeMessage, "DMoHi Help / Readmee", MessageBoxButtons.OK);//idk why this is here
+            //oh, it puts the text in the dialog pox that pops up and presents the title.
         }
     }
 }
