@@ -110,7 +110,7 @@ namespace DCS_Module_Hider
                 foreach (object itemChecked in checkedListBox1_modules.CheckedItems)
                 {
                     moduleName = itemChecked.ToString();
-                    sw.WriteLine("    [\"" + moduleName + "\"] = true,");
+                    sw.WriteLine("    [\"" + moduleName + "\"] = false,");//false hides, true shows
                     //MessageBox.Show(moduleName);
                 }
 
@@ -122,7 +122,7 @@ namespace DCS_Module_Hider
                 foreach (object item in notChecked)
                 {
                     moduleName = item.ToString();
-                    sw.WriteLine("    [\"" + moduleName + "\"] = false,");
+                    sw.WriteLine("    [\"" + moduleName + "\"] = true,");//false hides, true shows
                 }
                 sw.WriteLine("} -- end of pluginsEnabled");//caps off the end of the file
             }
@@ -168,37 +168,59 @@ namespace DCS_Module_Hider
         private void button3_deleteLua_Click(object sender, EventArgs e)
         {
             //this is basically the reset buutton
-            //https://stackoverflow.com/questions/3036829/how-do-i-create-a-message-box-with-yes-no-choices-and-a-dialogresult
-            string deleteLuaMessageText = ("Are you sure that you want to delete 'pluginsEnabled.lua'? Doing so will remove the file " +
-                "from your computer. If you delete this file you WILL be able to see or access all DCS modules.");
-            DialogResult dialogResult = MessageBox.Show(deleteLuaMessageText, "Are you sure?", MessageBoxButtons.YesNo);
-            if (dialogResult == DialogResult.Yes)
+
+            //check that the user has a lua selected.
+            if (String.IsNullOrEmpty(fullPath_pluginsEnabledLua))
+            //if one of the path is empty or null, the user didnt have them set
             {
-                //https://docs.microsoft.com/en-us/dotnet/api/system.io.file.delete?view=netcore-3.1
-                //do something
-                //check if file exists
-                //delete the file
-                if (File.Exists(fullPath_pluginsEnabledLua))
-                {
-                    File.Delete(fullPath_pluginsEnabledLua);
-                }
-            }
-            else if (dialogResult == DialogResult.No)
-            {
-                //do something else
+                MessageBox.Show("It looks like you did not select the correct DCS Saved Games Config folder. " +
+                    "Please select the correct DCS Saved Games Config folder and try again.");
                 return;
             }
+            else
+            {
+                string deleteLuaMessageText = ("Are you sure that you want to delete '" + fullPath_pluginsEnabledLua + "'? Doing so will remove the file " +
+                "from your computer. If you delete this file you WILL be able to see or access all DCS modules.");
+                DialogResult dialogResult = MessageBox.Show(deleteLuaMessageText, "Are you sure?", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    //https://docs.microsoft.com/en-us/dotnet/api/system.io.file.delete?view=netcore-3.1
+                    //do something
+                    //check if file exists
+                    //delete the file
+                    if (File.Exists(fullPath_pluginsEnabledLua))
+                    {
+                        File.Delete(fullPath_pluginsEnabledLua);
+                    }
+                    else
+                    {
+                        MessageBox.Show("The file '" + fullPath_pluginsEnabledLua + "' was not detected. " +
+                            "If that does not look correct, please try again.");
+                    }
+                }
+                else if (dialogResult == DialogResult.No)
+                {
+                    //do something else
+                    return;
+                }
+            }
+
+
+
+
+            //https://stackoverflow.com/questions/3036829/how-do-i-create-a-message-box-with-yes-no-choices-and-a-dialogresult
+            
         }
 
         private void button4_helpReadmee_Click(object sender, EventArgs e)//readmee and help text
         {
-            string helpReadmeMessage = ("Welcome to DCS Module Hider (DMoHi) v1. This program will enable you to select " +
+            string helpReadmeMessage = ("Welcome to DCS Module Hider (DMoHi) v1.1. This program will enable you to select " +
                 "which aircraft you want to display or hide on the main menu of DCS (as well as the rest of DCS). " +
                 "It works for modules you have purchased, modules you have not purchased, and selected mods. This program " +
                 "modifies, creates, and deletes files on your computer. If you are not comfortable with that, do not " +
                 "use this utility." + "\r\n" + "\r\n" +
-                "1. Check the modules that you want to use and view in the DCS main menu. (I typically check modules " +
-                "that I own)." + "\r\n" + "\r\n" +
+                "1. Check the modules that you want to hide in the DCS main menu. (I typically check modules " +
+                "that I don't own)." + "\r\n" + "\r\n" +
                 "2. Select your DCS Saved Games Config folder. It is likely located at " +
                 "‘C:\\Users\\YOURNAME\\SavedGames\\DCS.openbeta\\Config’." + "\r\n" + "\r\n" +
                 "3. Click the ‘Confirm and Export’ button. The utility will export a new ‘pluginsEnabled.lua’ to the chosen location. " +
@@ -220,7 +242,7 @@ namespace DCS_Module_Hider
                 "Enjoy!" + "\r\n" + "\r\n" +
 
                 "~Bailey" + "\r\n" +
-                "29AUG2020");
+                "01SEP2020");
 
             DialogResult dialogResult = MessageBox.Show(helpReadmeMessage, "DMoHi Help / Readmee", MessageBoxButtons.OK);//idk why this is here
             //oh, it puts the text in the dialog pox that pops up and presents the title.

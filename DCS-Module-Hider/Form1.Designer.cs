@@ -43,9 +43,9 @@
             this.label1_selectTheModules.AutoSize = true;
             this.label1_selectTheModules.Location = new System.Drawing.Point(12, 9);
             this.label1_selectTheModules.Name = "label1_selectTheModules";
-            this.label1_selectTheModules.Size = new System.Drawing.Size(203, 13);
+            this.label1_selectTheModules.Size = new System.Drawing.Size(206, 13);
             this.label1_selectTheModules.TabIndex = 0;
-            this.label1_selectTheModules.Text = "Select the DCS modules you want to see:";
+            this.label1_selectTheModules.Text = "Select the DCS modules you want to hide:";
             this.label1_selectTheModules.Click += new System.EventHandler(this.label1_selectTheModules_Click);
             // 
             // button2_confirmAndExport
