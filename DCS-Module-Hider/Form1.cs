@@ -14,8 +14,17 @@ using System.Windows.Forms;
  * you want to display or hide on the main menu of DCS. It works for modules you have not
  * purchased, modules you have purchased, and selected mods. Enjoy!
  * 
- * To add more modules to this program all you have to do as add their 'pluginEnabled.lua'
- * specific name to the "string[] modules' list.
+ * 
+ * 
+ * 
+ * 
+ *               ***************To add more modules to this program all you have to do as add their 'pluginEnabled.lua'**************
+ *                               ***************specific name to the "string[] modules' list.*******************
+ *                               //the file location is C:\Users\UserName\Saved Games\DCS.openbeta\Config\pluginsEnabled.lua
+ *                              
+ *                              Todo: Add new gaz ns430
+ *                               
+ *                               //Last module added was: Mi-24P Hind
  */
 
 namespace DCS_Module_Hider
@@ -33,20 +42,21 @@ namespace DCS_Module_Hider
             InitializeComponent();
             // Sets up the initial objects in the CheckedListBox.
             //just the list of modules
-            string[] modules = { "P-47D-30 by Eagle Dynamics", "MiG-19P by RAZBAM" , "MiG-21Bis by Magnitude 3 LLC",
-                "NS430_Mi-8MT", "F/A-18C","Su-27 Flanker by Eagle Dynamics", "L-39C", "Su-33 Flanker by Eagle Dynamics", 
+            string[] modules = { "NS430_SA342","NS430_C-101EB", "NS430_C-101CC", "P-47D-30 by Eagle Dynamics", "MiG-19P by RAZBAM" , "MiG-21Bis by Magnitude 3 LLC",
+                "NS430_Mi-8MT","NS430_L-39C","NS430", "F/A-18C","Su-27 Flanker by Eagle Dynamics", "L-39C", "Su-33 Flanker by Eagle Dynamics", 
                 "VAICOM PRO by Hollywood_315", "VAICOM PRO by 315 Interactive", "Tacview by Raia Software", "Nevada", "FW-190D9 Dora by Eagle Dynamics",
-                "NS430_L-39C", "Combined Arms by Eagle Dynamics", "Christen Eagle II by Magnitude 3 LLC", "SU-57 PAK FA by CUBANACE SIMULATIONS",
+                "Combined Arms by Eagle Dynamics", "Christen Eagle II by Magnitude 3 LLC", "SU-57 PAK FA by CUBANACE SIMULATIONS",
                 "MiG-29 Fulcrum by Eagle Dynamics", "Yak-52 by Eagle Dynamics", "MiG-15bis by Belsimtek",
-                "NS430", "TheChannel", "F-15C", "Su-25A by Eagle Dynamics", "Normandy", "Fw 190 A-8 by Eagle Dynamics", "C-101 Aviojet",
+                "TheChannel", "F-15C", "Su-25A by Eagle Dynamics", "Normandy", "Fw 190 A-8 by Eagle Dynamics", "C-101 Aviojet",
                 "I-16 by OctopusG", "AV-8B N/A by RAZBAM Sims", "A-10A by Eagle Dynamics", "Bf 109 K-4 by Eagle Dynamics",
                 "Flaming Cliffs by Eagle Dynamics","A-10C Warthog by Eagle Dynamics" ,"AJS37 Viggen by Heatblur Simulations",
-                "F-16C bl.50", "VARS Pylons 2019 by GrinnelliDesigns","Syria" ,
+                "F-16C bl.50", "VARS Pylons 2019 by GrinnelliDesigns","Syria" , "A-10C II Warthog by Eagle Dynamics",
                 "Mi-8MTV2 Hip by Belsimtek","MB-339PAN Original model by FTV" , "M-2000C by RAZBAM Sims" ,
                 "F-14B by Heatblur Simulations","Supercarrier" ,"PersianGulf" ,"Spitfire LF Mk. IX by Eagle Dynamics" ,"DCS-SRS" ,
                 "F-5E by Belsimtek","Su-25T by Eagle Dynamics" ,"UH-1H Huey by Belsimtek" , "JF-17 by Deka Ironwork Simulations",
                 "F-86F Sabre by Belsimtek","TF-51D Mustang by Eagle Dynamics" ,"A-4E-C" ,"SA342 Gazelle by Polychop-Simulations" ,
-                "Caucasus","Ka-50 Black Shark by Eagle Dynamics" ,"Edge540 FM by Aero" ,"P-51D Mustang by Eagle Dynamics","jsAvionics"};
+                "Ka-50 Black Shark by Eagle Dynamics" ,"Edge540 FM by Aero" ,"P-51D Mustang by Eagle Dynamics",
+                "Mi-24P by Eagle Dynamics"};
             
             checkedListBox1_modules.Items.AddRange(modules);
             checkedListBox1_modules.CheckOnClick = true;
@@ -68,7 +78,7 @@ namespace DCS_Module_Hider
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+          
         }
         string moduleName;
         private void button2_confirmAndExport_Click(object sender, EventArgs e)//starts the process of exporting the DCS file
@@ -214,7 +224,7 @@ namespace DCS_Module_Hider
 
         private void button4_helpReadmee_Click(object sender, EventArgs e)//readmee and help text
         {
-            string helpReadmeMessage = ("Welcome to DCS Module Hider (DMoHi) v1.1. This program will enable you to select " +
+            string helpReadmeMessage = ("Welcome to DCS Module Hider (DMoHi). This program will enable you to select " +
                 "which aircraft you want to display or hide on the main menu of DCS (as well as the rest of DCS). " +
                 "It works for modules you have purchased, modules you have not purchased, and selected mods. This program " +
                 "modifies, creates, and deletes files on your computer. If you are not comfortable with that, do not " +
@@ -242,9 +252,9 @@ namespace DCS_Module_Hider
                 "Enjoy!" + "\r\n" + "\r\n" +
 
                 "~Bailey" + "\r\n" +
-                "01SEP2020");
+                "07JUL2021");
 
-            DialogResult dialogResult = MessageBox.Show(helpReadmeMessage, "DMoHi Help / Readmee", MessageBoxButtons.OK);//idk why this is here
+            DialogResult dialogResult = MessageBox.Show(helpReadmeMessage, "DMoHi Help / Readme", MessageBoxButtons.OK);//idk why this is here
             //oh, it puts the text in the dialog pox that pops up and presents the title.
         }
     }

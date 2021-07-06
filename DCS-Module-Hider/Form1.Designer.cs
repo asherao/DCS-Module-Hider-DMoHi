@@ -118,7 +118,7 @@
             this.Controls.Add(this.label1_selectTheModules);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
-            this.Text = "DMoHi v1 by Bailey";
+            this.Text = "DMoHi v4 by Bailey";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
