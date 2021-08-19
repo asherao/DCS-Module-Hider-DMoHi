@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,7 +13,7 @@ using System.Windows.Forms;
 /*
  * Welcome to DCS Module Hider (DMoHi). This program will enable you to select which aircraft
  * you want to display or hide on the main menu of DCS. It works for modules you have not
- * purchased, modules you have purchased, and selected mods. Enjoy!
+ * purchased, modules you have purchased, and selected mods. You can also rearrange the icons. Enjoy!
  * 
  * 
  * ***************To add more modules to this program all you have to do as add their 'pluginEnabled.lua'**************
@@ -39,6 +40,14 @@ using System.Windows.Forms;
  * - InsertOneItem(self,a_data,tmpData,"Edge540 FM by Aero")
  */
 
+/*
+ * v6 ideas:
+ * - WPF
+ * - Saves/Loads the order of the Icons
+ * - Fully interactable GUI
+ *  - Drag and drop 
+ */
+
 namespace DCS_Module_Hider
 {
     public partial class Form1 : Form
@@ -50,9 +59,17 @@ namespace DCS_Module_Hider
         string pathOfConfigFolder;
 
 
-        //TODO: Reorder these modules so that they make sense.
-        string[] modules = { "--MODULES ABOVE WILL BE SHOWN IN ORDER--","NS430_SA342","NS430_C-101EB", "NS430_C-101CC", "P-47D-30 by Eagle Dynamics", "MiG-19P by RAZBAM" , "MiG-21Bis by Magnitude 3 LLC",
-                "NS430_Mi-8MT","NS430_L-39C","NS430", "F/A-18C","Su-27 Flanker by Eagle Dynamics", "L-39C", "Su-33 Flanker by Eagle Dynamics",
+        ArrayList list = new ArrayList();
+
+
+        string[] modules = { 
+            "NS430_SA342","NS430_C-101EB", "NS430_C-101CC", 
+            "P-47D-30 by Eagle Dynamics", "MiG-19P by RAZBAM" , 
+            "MiG-21Bis by Magnitude 3 LLC",
+            "NS430_Mi-8MT","NS430_L-39C",
+            "NS430", "F/A-18C",
+            "Su-27 Flanker by Eagle Dynamics", 
+            "L-39C", "Su-33 Flanker by Eagle Dynamics",
                 "VAICOM PRO by Hollywood_315", "VAICOM PRO by 315 Interactive", "Tacview by Raia Software", "Nevada", "FW-190D9 Dora by Eagle Dynamics",
                 "Combined Arms by Eagle Dynamics", "Christen Eagle II by Magnitude 3 LLC", "SU-57 PAK FA by CUBANACE SIMULATIONS",
                 "MiG-29 Fulcrum by Eagle Dynamics", "Yak-52 by Eagle Dynamics", "MiG-15bis by Belsimtek",
@@ -80,6 +97,25 @@ namespace DCS_Module_Hider
             checkedListBox1_modules.Items.AddRange(modules);
             //checkedListBox1_modules.CheckOnClick = true;
             //checkedListBox1_modules.Sorted = true;
+
+            
+
+            //sort the list of modules
+            //https://www.csharp-console-examples.com/winform/sort-listbox-items-on-descending-order-in-c/
+            foreach (object o in listBox1.Items)
+            {
+                list.Add(o);
+            }
+            list.Sort();
+            //list.Reverse();
+            listBox1.Items.Clear();
+            listBox1.Items.Add("--MODULES ABOVE WILL BE SHOWN IN ORDER--");
+            foreach (object o in list)
+            {
+                listBox1.Items.Add(o);
+            }
+
+            
 
             //if there is a settings file, load it
             if (File.Exists(appPath + @"/DCS-Module-Hider-Settings/DMoHi-UserSettings.txt"))
@@ -373,7 +409,7 @@ namespace DCS_Module_Hider
                 "modifies, creates, and deletes files on your computer. If you are not comfortable with that, do not " +
                 "use this utility." + "\r\n" + "\r\n" +
                 "1. Click and drag the module names above" + "\r\n" + "'--ABOVE MODULES WILL BE SHOWN--'." + 
-                "\r\n" + "They will be displayed in the same order. " + "(Don't drag them too high!!!)" +
+                "\r\n" + "They will be displayed in the same order. " + "(Don't drag them too high!!!)" + " You can also drag the seperator if you like." +
                 "\r\n" + "\r\n" +
                 "2. Select your DCS Install folder. \r\nAn example is " +
                 "‘C:\\Games\\DCS World Open Beta’." + "\r\n" + "\r\n" +
