@@ -37,6 +37,7 @@
             this.button3_deleteLua = new System.Windows.Forms.Button();
             this.button4_helpReadmee = new System.Windows.Forms.Button();
             this.listBox1 = new System.Windows.Forms.ListBox();
+            this.button5_openLuaLocation = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1_selectTheModules
@@ -101,9 +102,9 @@
             // 
             // button4_helpReadmee
             // 
-            this.button4_helpReadmee.Location = new System.Drawing.Point(173, 380);
+            this.button4_helpReadmee.Location = new System.Drawing.Point(173, 409);
             this.button4_helpReadmee.Name = "button4_helpReadmee";
-            this.button4_helpReadmee.Size = new System.Drawing.Size(120, 52);
+            this.button4_helpReadmee.Size = new System.Drawing.Size(120, 23);
             this.button4_helpReadmee.TabIndex = 6;
             this.button4_helpReadmee.Text = "Help / Readmee";
             this.button4_helpReadmee.UseVisualStyleBackColor = true;
@@ -122,11 +123,22 @@
             this.listBox1.DragOver += new System.Windows.Forms.DragEventHandler(this.listBox1_DragOver);
             this.listBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.listBox1_MouseDown);
             // 
+            // button5_openLuaLocation
+            // 
+            this.button5_openLuaLocation.Location = new System.Drawing.Point(173, 380);
+            this.button5_openLuaLocation.Name = "button5_openLuaLocation";
+            this.button5_openLuaLocation.Size = new System.Drawing.Size(120, 23);
+            this.button5_openLuaLocation.TabIndex = 8;
+            this.button5_openLuaLocation.Text = "Open Lua File";
+            this.button5_openLuaLocation.UseVisualStyleBackColor = true;
+            this.button5_openLuaLocation.Click += new System.EventHandler(this.button5_openLuaLocation_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(305, 442);
+            this.Controls.Add(this.button5_openLuaLocation);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.button4_helpReadmee);
             this.Controls.Add(this.button3_deleteLua);
@@ -154,6 +166,7 @@
         private System.Windows.Forms.Button button3_deleteLua;
         private System.Windows.Forms.Button button4_helpReadmee;
         private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.Button button5_openLuaLocation;
     }
 }
 

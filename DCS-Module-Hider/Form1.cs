@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -224,7 +225,10 @@ namespace DCS_Module_Hider
                         sw.WriteLine("end");
 
                         sw.WriteLine("");
+                        sw.WriteLine("---------------------------");
                         sw.WriteLine("-----TAIPAN CODE START-----");
+                        sw.WriteLine("---------------------------");
+                        sw.WriteLine("");
                         sw.WriteLine("local function InsertOneItem(self,a_data,tmpData, moduleID) -- NEW FUNCTION BY TAIPAN_");
                         sw.WriteLine("	--loop to get data now in a function, so can be called one item at a time in the desired sort order");
                         sw.WriteLine("");
@@ -260,7 +264,10 @@ namespace DCS_Module_Hider
                             }
 
                         }
-                        sw.WriteLine("	-- TAIPAN CODE END------");
+                        sw.WriteLine("");
+                        sw.WriteLine("---------------------------");
+                        sw.WriteLine("------TAIPAN CODE END------");
+                        sw.WriteLine("---------------------------");
                         sw.WriteLine("");
                         break;//this stops the writing here
 
@@ -286,7 +293,9 @@ namespace DCS_Module_Hider
 
                 
             }
-            MessageBox.Show("Your new file has been exported to '" + pathOfLuaFile);//tells the user that the export was successful
+
+            MessageBox.Show("Your new file has been exported to '" + pathOfLuaFile + "'\r\n" + "\r\n" +
+                "You can view and fine tune the file by clicking the 'Open Lua File' button. Look for 'TAIPAN CODE' START and END." + "\r\n" + "\r\n");//tells the user that the export was successful
 
             //cleanup
             if (File.Exists(pathOfLuaFileCopy))
@@ -486,6 +495,30 @@ namespace DCS_Module_Hider
             object data = e.Data.GetData(typeof(String));
             this.listBox1.Items.Remove(data);
             this.listBox1.Items.Insert(index, data);
+        }
+
+        private void button5_openLuaLocation_Click(object sender, EventArgs e)
+        {
+            //check that the lua path has been set
+            if (String.IsNullOrEmpty(pathOfLuaFile))
+            //if one of the path is empty or null, the user didnt have them set
+            {
+                MessageBox.Show("It looks like you did not select the correct DCS Install folder. " +
+                    "Please select the correct DCS Install folder and try again.");
+                return;
+            }
+            else
+            {
+                OpenLuaLocation();//opens the lua file location
+            }
+        }
+
+        private void OpenLuaLocation() //think about opening the folder instead of the file
+        {
+            if (File.Exists(pathOfLuaFile))
+            {
+                Process.Start("explorer.exe", pathOfLuaFile);
+            }
         }
     }
 }
