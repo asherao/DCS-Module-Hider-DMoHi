@@ -49,6 +49,11 @@ using System.Windows.Forms;
  *  - Drag and drop 
  */
 
+/*
+ * Bugs:
+ * Individual FC3 modules may not show if not installed
+ * 
+ */
 namespace DCS_Module_Hider
 {
     public partial class Form1 : Form
@@ -417,7 +422,7 @@ namespace DCS_Module_Hider
                 "It works for modules you have purchased, modules you have not purchased, and selected mods. This program " +
                 "modifies, creates, and deletes files on your computer. If you are not comfortable with that, do not " +
                 "use this utility." + "\r\n" + "\r\n" +
-                "1. Click and drag the module names above" + "\r\n" + "'--ABOVE MODULES WILL BE SHOWN--'." + 
+                "1. Click and drag the module names above" + "\r\n" + "'--ABOVE MODULES WILL BE SHOWN IN ORDER--'." + 
                 "\r\n" + "They will be displayed in the same order. " + "(Don't drag them too high!!!)" + " You can also drag the seperator if you like." +
                 "\r\n" + "\r\n" +
                 "2. Select your DCS Install folder. \r\nAn example is " +
@@ -517,7 +522,8 @@ namespace DCS_Module_Hider
         {
             if (File.Exists(pathOfLuaFile))
             {
-                Process.Start("explorer.exe", pathOfLuaFile);
+                //MessageBox.Show("Loading...");
+                Process.Start("explorer.exe", Path.GetDirectoryName(pathOfLuaFile));
             }
         }
     }

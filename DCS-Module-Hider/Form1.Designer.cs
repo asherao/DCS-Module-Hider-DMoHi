@@ -52,9 +52,9 @@
             // 
             // button2_confirmAndExport
             // 
-            this.button2_confirmAndExport.Location = new System.Drawing.Point(15, 409);
+            this.button2_confirmAndExport.Location = new System.Drawing.Point(144, 519);
             this.button2_confirmAndExport.Name = "button2_confirmAndExport";
-            this.button2_confirmAndExport.Size = new System.Drawing.Size(141, 23);
+            this.button2_confirmAndExport.Size = new System.Drawing.Size(149, 23);
             this.button2_confirmAndExport.TabIndex = 1;
             this.button2_confirmAndExport.Text = "Confirm and Export";
             this.button2_confirmAndExport.UseVisualStyleBackColor = true;
@@ -62,9 +62,9 @@
             // 
             // button1_selectLua
             // 
-            this.button1_selectLua.Location = new System.Drawing.Point(15, 380);
+            this.button1_selectLua.Location = new System.Drawing.Point(15, 490);
             this.button1_selectLua.Name = "button1_selectLua";
-            this.button1_selectLua.Size = new System.Drawing.Size(141, 23);
+            this.button1_selectLua.Size = new System.Drawing.Size(123, 23);
             this.button1_selectLua.TabIndex = 2;
             this.button1_selectLua.Text = "Select DCS Install Folder";
             this.button1_selectLua.UseVisualStyleBackColor = true;
@@ -72,7 +72,7 @@
             // 
             // textBox1_luaLocation
             // 
-            this.textBox1_luaLocation.Location = new System.Drawing.Point(15, 354);
+            this.textBox1_luaLocation.Location = new System.Drawing.Point(15, 464);
             this.textBox1_luaLocation.Name = "textBox1_luaLocation";
             this.textBox1_luaLocation.ReadOnly = true;
             this.textBox1_luaLocation.Size = new System.Drawing.Size(278, 20);
@@ -102,9 +102,9 @@
             // 
             // button4_helpReadmee
             // 
-            this.button4_helpReadmee.Location = new System.Drawing.Point(173, 409);
+            this.button4_helpReadmee.Location = new System.Drawing.Point(15, 519);
             this.button4_helpReadmee.Name = "button4_helpReadmee";
-            this.button4_helpReadmee.Size = new System.Drawing.Size(120, 23);
+            this.button4_helpReadmee.Size = new System.Drawing.Size(123, 23);
             this.button4_helpReadmee.TabIndex = 6;
             this.button4_helpReadmee.Text = "Help / Readmee";
             this.button4_helpReadmee.UseVisualStyleBackColor = true;
@@ -116,7 +116,7 @@
             this.listBox1.FormattingEnabled = true;
             this.listBox1.Location = new System.Drawing.Point(15, 25);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(278, 316);
+            this.listBox1.Size = new System.Drawing.Size(278, 433);
             this.listBox1.TabIndex = 7;
             this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             this.listBox1.DragDrop += new System.Windows.Forms.DragEventHandler(this.listBox1_DragDrop);
@@ -125,11 +125,11 @@
             // 
             // button5_openLuaLocation
             // 
-            this.button5_openLuaLocation.Location = new System.Drawing.Point(173, 380);
+            this.button5_openLuaLocation.Location = new System.Drawing.Point(144, 490);
             this.button5_openLuaLocation.Name = "button5_openLuaLocation";
-            this.button5_openLuaLocation.Size = new System.Drawing.Size(120, 23);
+            this.button5_openLuaLocation.Size = new System.Drawing.Size(149, 23);
             this.button5_openLuaLocation.TabIndex = 8;
-            this.button5_openLuaLocation.Text = "Open Lua File";
+            this.button5_openLuaLocation.Text = "Open \'plPanel.lua\' Location";
             this.button5_openLuaLocation.UseVisualStyleBackColor = true;
             this.button5_openLuaLocation.Click += new System.EventHandler(this.button5_openLuaLocation_Click);
             // 
@@ -137,7 +137,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(305, 442);
+            this.ClientSize = new System.Drawing.Size(305, 550);
             this.Controls.Add(this.button5_openLuaLocation);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.button4_helpReadmee);
@@ -149,7 +149,7 @@
             this.Controls.Add(this.label1_selectTheModules);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
-            this.Text = "DMoHi v5 by Bailey";
+            this.Text = "DMoHi v5.1 by Bailey";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
