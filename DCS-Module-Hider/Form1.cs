@@ -52,6 +52,7 @@ using System.Windows.Forms;
 /*
  * Bugs:
  * Individual FC3 modules may not show if not installed
+ * If a mod aircraft isnt on the list, it will be hidden automatically
  * 
  */
 namespace DCS_Module_Hider
@@ -68,27 +69,62 @@ namespace DCS_Module_Hider
         ArrayList list = new ArrayList();
 
 
-        string[] modules = { 
-            "NS430_SA342","NS430_C-101EB", "NS430_C-101CC", 
+        string[] modules = {
+            //aircraft
             "P-47D-30 by Eagle Dynamics", "MiG-19P by RAZBAM" , 
             "MiG-21Bis by Magnitude 3 LLC",
-            "NS430_Mi-8MT","NS430_L-39C",
-            "NS430", "F/A-18C",
+            "F/A-18C",
             "Su-27 Flanker by Eagle Dynamics", 
             "L-39C", "Su-33 Flanker by Eagle Dynamics",
-                "VAICOM PRO by Hollywood_315", "VAICOM PRO by 315 Interactive", "Tacview by Raia Software", "Nevada", "FW-190D9 Dora by Eagle Dynamics",
-                "Combined Arms by Eagle Dynamics", "Christen Eagle II by Magnitude 3 LLC", "SU-57 PAK FA by CUBANACE SIMULATIONS",
-                "MiG-29 Fulcrum by Eagle Dynamics", "Yak-52 by Eagle Dynamics", "MiG-15bis by Belsimtek",
-                "TheChannel", "F-15C", "Su-25A by Eagle Dynamics", "Normandy", "Fw 190 A-8 by Eagle Dynamics", "C-101 Aviojet",
-                "I-16 by OctopusG", "AV-8B N/A by RAZBAM Sims", "A-10A by Eagle Dynamics", "Bf 109 K-4 by Eagle Dynamics",
-                "Flaming Cliffs by Eagle Dynamics","A-10C Warthog by Eagle Dynamics" ,"AJS37 Viggen by Heatblur Simulations",
-                "F-16C bl.50", "VARS Pylons 2019 by GrinnelliDesigns","Syria" , "A-10C II Warthog by Eagle Dynamics",
-                "Mi-8MTV2 Hip by Belsimtek","MB-339PAN Original model by FTV" , "M-2000C by RAZBAM Sims" ,
-                "F-14B by Heatblur Simulations","Supercarrier" ,"PersianGulf" ,"Spitfire LF Mk. IX by Eagle Dynamics" ,"DCS-SRS" ,
-                "F-5E by Belsimtek","Su-25T by Eagle Dynamics" ,"UH-1H Huey by Belsimtek" , "JF-17 by Deka Ironwork Simulations",
-                "F-86F Sabre by Belsimtek","TF-51D Mustang by Eagle Dynamics" ,"A-4E-C" ,"SA342 Gazelle by Polychop-Simulations" ,
-                "Ka-50 Black Shark by Eagle Dynamics" ,"Edge540 FM by Aero" ,"P-51D Mustang by Eagle Dynamics",
-                "Mi-24P by Eagle Dynamics"};
+            "FW-190D9 Dora by Eagle Dynamics",
+            "Christen Eagle II by Magnitude 3 LLC", 
+            "MiG-29 Fulcrum by Eagle Dynamics", "Yak-52 by Eagle Dynamics", 
+            "MiG-15bis by Belsimtek",
+            "F-15C", "Su-25A by Eagle Dynamics",  
+            "Fw 190 A-8 by Eagle Dynamics", "C-101 Aviojet",
+            "I-16 by OctopusG", "AV-8B N/A by RAZBAM Sims", "A-10A by Eagle Dynamics", 
+            "Bf 109 K-4 by Eagle Dynamics",
+            "Flaming Cliffs by Eagle Dynamics","A-10C Warthog by Eagle Dynamics" ,
+            "AJS37 Viggen by Heatblur Simulations",
+            "F-16C bl.50", 
+            "A-10C II Warthog by Eagle Dynamics",
+            "Mi-8MTV2 Hip by Belsimtek",
+            "M-2000C by RAZBAM Sims" ,
+            "F-14B by Heatblur Simulations",
+            "Spitfire LF Mk. IX by Eagle Dynamics" ,
+            "F-5E by Belsimtek","Su-25T by Eagle Dynamics" ,"UH-1H Huey by Belsimtek" , 
+            "JF-17 by Deka Ironwork Simulations",
+            "F-86F Sabre by Belsimtek","TF-51D Mustang by Eagle Dynamics" ,
+            "SA342 Gazelle by Polychop-Simulations" ,
+            "Ka-50 Black Shark by Eagle Dynamics" ,
+            "P-51D Mustang by Eagle Dynamics",
+            "Mi-24P by Eagle Dynamics",
+            //special modules
+            "Combined Arms by Eagle Dynamics",
+            "NS430", "NS430_SA342","NS430_C-101EB", "NS430_C-101CC", "NS430_Mi-8MT", "NS430_L-39C",
+            "Supercarrier" ,
+            //maps
+            "PersianGulf" ,
+            "Nevada",
+            "TheChannel",
+            "Syria" ,
+            "Normandy",
+            "MarianaIslands",
+            //mods
+            "SU-57 PAK FA by CUBANACE SIMULATIONS",
+            "MB-339PAN Original model by FTV" ,
+            "A-4E-C" ,
+            "Edge540 FM by Aero" ,
+            "VARS Pylons 2019 by GrinnelliDesigns",
+            //utilities
+            "DCS WAIFU (Weather Atis Information Utility)",
+            "DCS A-10C Integrated Countermeasure Editor", "DCS M2000C Integrated Countermeasure Editor",
+            "DCS F-18C Integrated Countermeasure Editor", "DCS F-16C Integrated Countermeasure Editor",
+            "DCS AV-8B Integrated Countermeasure Editor",
+            "DCS-SRS" ,
+            "VAICOM PRO by Hollywood_315", "VAICOM PRO by 315 Interactive", 
+            "Tacview by Raia Software"};
+
         public Form1()
         {
             InitializeComponent();
@@ -105,7 +141,6 @@ namespace DCS_Module_Hider
             //checkedListBox1_modules.Sorted = true;
 
             
-
             //sort the list of modules
             //https://www.csharp-console-examples.com/winform/sort-listbox-items-on-descending-order-in-c/
             foreach (object o in listBox1.Items)
