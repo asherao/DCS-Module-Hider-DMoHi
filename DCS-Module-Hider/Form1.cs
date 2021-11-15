@@ -480,10 +480,11 @@ namespace DCS_Module_Hider
 
                 "Thank you to the Hoggit community on Discord for the idea and research for this utility." +
                 " Also thanks to TAIPAN_ for the v5 DMoHi update. Now you can select and arrange the icons without disabling them!" + "\r\n" +
+                "Thank you Stewmanji for the Mossie update!" + "\r\n" +
                 "Enjoy!" + "\r\n" + "\r\n" +
 
                 "~Bailey" + "\r\n" +
-                "18AUG2021");
+                "16AUG2021");
 
             DialogResult dialogResult = MessageBox.Show(helpReadmeMessage, "DMoHi Help / Readme", MessageBoxButtons.OK);//idk why this is here
             //oh, it puts the text in the dialog pox that pops up and presents the title.
