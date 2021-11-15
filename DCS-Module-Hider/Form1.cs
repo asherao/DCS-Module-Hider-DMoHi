@@ -484,7 +484,7 @@ namespace DCS_Module_Hider
                 "Enjoy!" + "\r\n" + "\r\n" +
 
                 "~Bailey" + "\r\n" +
-                "16AUG2021");
+                "16NOV2021");
 
             DialogResult dialogResult = MessageBox.Show(helpReadmeMessage, "DMoHi Help / Readme", MessageBoxButtons.OK);//idk why this is here
             //oh, it puts the text in the dialog pox that pops up and presents the title.
