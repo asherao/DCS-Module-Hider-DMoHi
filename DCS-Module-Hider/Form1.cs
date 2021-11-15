@@ -99,6 +99,7 @@ namespace DCS_Module_Hider
             "Ka-50 Black Shark by Eagle Dynamics" ,
             "P-51D Mustang by Eagle Dynamics",
             "Mi-24P by Eagle Dynamics",
+			"DH.98 Mosquito FB Mk. VI by Eagle Dynamics",
             //special modules
             "Combined Arms by Eagle Dynamics",
             "NS430", "NS430_SA342","NS430_C-101EB", "NS430_C-101CC", "NS430_Mi-8MT", "NS430_L-39C",
